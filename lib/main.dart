@@ -83,7 +83,31 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
+    if (Platform.isIOS) {
+      return CupertinoPageScaffold(
+        navigationBar: CupertinoNavigationBar(
+          middle: Text(widget.title),
+          trailing: GestureDetector(
+            child: Icon(CupertinoIcons.add),
+            onTap: _incrementCounter,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'You have pushed the button this many times:',
+              ),
+              Text(
+                '$_counter',
+                style: Theme.of(context).textTheme.display1,
+              ),
+            ],
+          ),
+        ),
+      );
+    } else {
       return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
@@ -110,4 +134,4 @@ class _MyHomePageState extends State<MyHomePage> {
       );
     }
   }
-
+}
